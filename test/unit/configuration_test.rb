@@ -77,6 +77,16 @@ module Tire
         assert_equal          'http://localhost:9200', Configuration.url
         assert_equal          HTTP::Client::RestClient, Configuration.client
       end
+
+      should "set auto_index_creation option to true by default" do
+        assert_not_nil Configuration.auto_index_creation
+        assert Configuration.auto_index_creation, "Should be true, but is: #{Configuration.auto_index_creation.inspect}"
+      end
+
+      should "set the auto_index_creation option to false" do
+        Configuration.auto_index_creation(false)
+        assert ! Configuration.auto_index_creation, "Should be falsy, but is: #{Configuration.auto_index_creation.inspect}"
+      end
     end
 
   end

@@ -27,12 +27,19 @@ module Tire
       end
     end
 
+    def self.auto_index_creation(value=nil)
+      if value === false
+        return @auto_index_creation = false
+      else
+        @auto_index_creation.nil? ? true : @auto_index_creation
+      end
+    end
+
     def self.reset(*properties)
       reset_variables = properties.empty? ? instance_variables : instance_variables.map { |p| p.to_s} & \
                                                                  properties.map         { |p| "@#{p}" }
       reset_variables.each { |v| instance_variable_set(v.to_sym, nil) }
     end
-
   end
 
 end
