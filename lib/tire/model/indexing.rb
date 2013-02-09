@@ -58,7 +58,6 @@ module Tire
           if block_given?
             @mapping_options = args.pop
             yield
-            create_elasticsearch_index
             create_elasticsearch_index if Tire::Configuration.auto_index_creation
           else
             @mapping
