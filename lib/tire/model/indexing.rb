@@ -59,7 +59,6 @@ module Tire
             @mapping_options = args.pop
             # we need to pass the current self instance
             block.arity < 1 ? instance_eval(&block) : block.call(self)
-            create_elasticsearch_index
             create_elasticsearch_index if Tire::Configuration.auto_index_creation
           else
             @mapping
